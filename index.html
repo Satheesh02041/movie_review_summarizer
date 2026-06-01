@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Review Summarizer 🎬</title>
+  <meta name="description"
+    content="Hollywood-grade profanity-aware multilingual opinion summarizer for cinema reviews.">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Icons -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/src/index.css">
+</head>
+
+<body>
+
+  <!-- ░░░░░░░░░ BACKGROUND: Hollywood Production Company Logos ░░░░░░░░░ -->
+  <div class="bg-logos-layer" aria-hidden="true">
+    <div class="logos-track track-left">
+      <span class="lgo universal">UNIVERSAL</span>
+      <span class="lgo warner">WARNER BROS</span>
+      <span class="lgo paramount">PARAMOUNT</span>
+      <span class="lgo disney">DISNEY</span>
+      <span class="lgo sony">SONY PICTURES</span>
+      <span class="lgo fox">20TH CENTURY</span>
+      <span class="lgo mgm">MGM</span>
+      <span class="lgo columbia">COLUMBIA</span>
+      <span class="lgo lionsgate">LIONSGATE</span>
+      <span class="lgo dreamworks">DREAMWORKS</span>
+      <span class="lgo a24">A24</span>
+      <span class="lgo miramax">MIRAMAX</span>
+      <span class="lgo newline">NEW LINE</span>
+      <span class="lgo blumhouse">BLUMHOUSE</span>
+      <span class="lgo tristar">TRISTAR</span>
+      <!-- dupe for seamless loop -->
+      <span class="lgo universal">UNIVERSAL</span>
+      <span class="lgo warner">WARNER BROS</span>
+      <span class="lgo paramount">PARAMOUNT</span>
+      <span class="lgo disney">DISNEY</span>
+      <span class="lgo sony">SONY PICTURES</span>
+      <span class="lgo fox">20TH CENTURY</span>
+      <span class="lgo mgm">MGM</span>
+      <span class="lgo columbia">COLUMBIA</span>
+      <span class="lgo lionsgate">LIONSGATE</span>
+      <span class="lgo dreamworks">DREAMWORKS</span>
+      <span class="lgo a24">A24</span>
+      <span class="lgo miramax">MIRAMAX</span>
+      <span class="lgo newline">NEW LINE</span>
+      <span class="lgo blumhouse">BLUMHOUSE</span>
+      <span class="lgo tristar">TRISTAR</span>
+    </div>
+    <div class="logos-track track-right">
+      <span class="lgo lionsgate">LIONSGATE</span>
+      <span class="lgo dreamworks">DREAMWORKS</span>
+      <span class="lgo a24">A24</span>
+      <span class="lgo columbia">COLUMBIA</span>
+      <span class="lgo disney">DISNEY</span>
+      <span class="lgo sony">SONY PICTURES</span>
+      <span class="lgo universal">UNIVERSAL</span>
+      <span class="lgo fox">20TH CENTURY</span>
+      <span class="lgo warner">WARNER BROS</span>
+      <span class="lgo paramount">PARAMOUNT</span>
+      <span class="lgo blumhouse">BLUMHOUSE</span>
+      <span class="lgo newline">NEW LINE</span>
+      <span class="lgo mgm">MGM</span>
+      <span class="lgo miramax">MIRAMAX</span>
+      <span class="lgo tristar">TRISTAR</span>
+      <span class="lgo lionsgate">LIONSGATE</span>
+      <span class="lgo dreamworks">DREAMWORKS</span>
+      <span class="lgo a24">A24</span>
+      <span class="lgo columbia">COLUMBIA</span>
+      <span class="lgo disney">DISNEY</span>
+      <span class="lgo sony">SONY PICTURES</span>
+      <span class="lgo universal">UNIVERSAL</span>
+      <span class="lgo fox">20TH CENTURY</span>
+      <span class="lgo warner">WARNER BROS</span>
+      <span class="lgo paramount">PARAMOUNT</span>
+      <span class="lgo blumhouse">BLUMHOUSE</span>
+      <span class="lgo newline">NEW LINE</span>
+      <span class="lgo mgm">MGM</span>
+      <span class="lgo miramax">MIRAMAX</span>
+      <span class="lgo tristar">TRISTAR</span>
+    </div>
+    <div class="logos-track track-left track-slow">
+      <span class="lgo sony">SONY PICTURES</span>
+      <span class="lgo newline">NEW LINE</span>
+      <span class="lgo universal">UNIVERSAL</span>
+      <span class="lgo miramax">MIRAMAX</span>
+      <span class="lgo warner">WARNER BROS</span>
+      <span class="lgo blumhouse">BLUMHOUSE</span>
+      <span class="lgo paramount">PARAMOUNT</span>
+      <span class="lgo a24">A24</span>
+      <span class="lgo disney">DISNEY</span>
+      <span class="lgo mgm">MGM</span>
+      <span class="lgo fox">20TH CENTURY</span>
+      <span class="lgo columbia">COLUMBIA</span>
+      <span class="lgo lionsgate">LIONSGATE</span>
+      <span class="lgo dreamworks">DREAMWORKS</span>
+      <span class="lgo tristar">TRISTAR</span>
+      <span class="lgo sony">SONY PICTURES</span>
+      <span class="lgo newline">NEW LINE</span>
+      <span class="lgo universal">UNIVERSAL</span>
+      <span class="lgo miramax">MIRAMAX</span>
+      <span class="lgo warner">WARNER BROS</span>
+      <span class="lgo blumhouse">BLUMHOUSE</span>
+      <span class="lgo paramount">PARAMOUNT</span>
+      <span class="lgo a24">A24</span>
+      <span class="lgo disney">DISNEY</span>
+      <span class="lgo mgm">MGM</span>
+      <span class="lgo fox">20TH CENTURY</span>
+      <span class="lgo columbia">COLUMBIA</span>
+      <span class="lgo lionsgate">LIONSGATE</span>
+      <span class="lgo dreamworks">DREAMWORKS</span>
+      <span class="lgo tristar">TRISTAR</span>
+    </div>
+    <div class="logos-track track-right track-slow">
+      <span class="lgo mgm">MGM</span>
+      <span class="lgo fox">20TH CENTURY</span>
+      <span class="lgo columbia">COLUMBIA</span>
+      <span class="lgo tristar">TRISTAR</span>
+      <span class="lgo disney">DISNEY</span>
+      <span class="lgo a24">A24</span>
+      <span class="lgo lionsgate">LIONSGATE</span>
+      <span class="lgo sony">SONY PICTURES</span>
+      <span class="lgo universal">UNIVERSAL</span>
+      <span class="lgo miramax">MIRAMAX</span>
+      <span class="lgo dreamworks">DREAMWORKS</span>
+      <span class="lgo warner">WARNER BROS</span>
+      <span class="lgo paramount">PARAMOUNT</span>
+      <span class="lgo newline">NEW LINE</span>
+      <span class="lgo blumhouse">BLUMHOUSE</span>
+      <span class="lgo mgm">MGM</span>
+      <span class="lgo fox">20TH CENTURY</span>
+      <span class="lgo columbia">COLUMBIA</span>
+      <span class="lgo tristar">TRISTAR</span>
+      <span class="lgo disney">DISNEY</span>
+      <span class="lgo a24">A24</span>
+      <span class="lgo lionsgate">LIONSGATE</span>
+      <span class="lgo sony">SONY PICTURES</span>
+      <span class="lgo universal">UNIVERSAL</span>
+      <span class="lgo miramax">MIRAMAX</span>
+      <span class="lgo dreamworks">DREAMWORKS</span>
+      <span class="lgo warner">WARNER BROS</span>
+      <span class="lgo paramount">PARAMOUNT</span>
+      <span class="lgo newline">NEW LINE</span>
+      <span class="lgo blumhouse">BLUMHOUSE</span>
+    </div>
+    <div class="logos-track track-left track-vslow">
+      <span class="lgo warner">WARNER BROS</span>
+      <span class="lgo lionsgate">LIONSGATE</span>
+      <span class="lgo paramount">PARAMOUNT</span>
+      <span class="lgo blumhouse">BLUMHOUSE</span>
+      <span class="lgo universal">UNIVERSAL</span>
+      <span class="lgo miramax">MIRAMAX</span>
+      <span class="lgo sony">SONY PICTURES</span>
+      <span class="lgo a24">A24</span>
+      <span class="lgo fox">20TH CENTURY</span>
+      <span class="lgo newline">NEW LINE</span>
+      <span class="lgo columbia">COLUMBIA</span>
+      <span class="lgo disney">DISNEY</span>
+      <span class="lgo mgm">MGM</span>
+      <span class="lgo dreamworks">DREAMWORKS</span>
+      <span class="lgo tristar">TRISTAR</span>
+      <span class="lgo warner">WARNER BROS</span>
+      <span class="lgo lionsgate">LIONSGATE</span>
+      <span class="lgo paramount">PARAMOUNT</span>
+      <span class="lgo blumhouse">BLUMHOUSE</span>
+      <span class="lgo universal">UNIVERSAL</span>
+      <span class="lgo miramax">MIRAMAX</span>
+      <span class="lgo sony">SONY PICTURES</span>
+      <span class="lgo a24">A24</span>
+      <span class="lgo fox">20TH CENTURY</span>
+      <span class="lgo newline">NEW LINE</span>
+      <span class="lgo columbia">COLUMBIA</span>
+      <span class="lgo disney">DISNEY</span>
+      <span class="lgo mgm">MGM</span>
+      <span class="lgo dreamworks">DREAMWORKS</span>
+      <span class="lgo tristar">TRISTAR</span>
+    </div>
+  </div>
+
+  <!-- ░░░░░░░░░ SLIDE DRAWER OVERLAY ░░░░░░░░░ -->
+  <div class="drawer-overlay hidden" id="drawer-overlay"></div>
+
+  <!-- ░░░░░░░░░ LEFT SLIDE DRAWER ░░░░░░░░░ -->
+  <div class="slide-drawer" id="slide-drawer">
+    <div class="drawer-header-area">
+      <div class="drawer-brand">
+        <span class="drawer-emoji">🎬</span>
+        <div>
+          <div class="drawer-brand-name">Movie Review Summarizer</div>
+          <div class="drawer-brand-sub">Cinema Critic Engine</div>
+        </div>
+      </div>
+      <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close menu">
+        <i class="bx bx-x"></i>
+      </button>
+    </div>
+
+    <div class="drawer-status-mini">
+      <span class="pulse-dot"></span>
+      <span>ENGINE ONLINE</span>
+      <span class="drawer-status-details"></span>
+    </div>
+
+    <nav class="drawer-nav">
+      <p class="drawer-nav-label">📋 NAVIGATE</p>
+      <button class="nav-btn active" id="tab-btn-pipeline" data-tab="pipeline">
+        <i class="bx bx-movie-play"></i>
+        <span>Critic Ingestion</span>
+        <i class="bx bx-chevron-right nav-arrow"></i>
+      </button>
+      <button class="nav-btn" id="tab-btn-dashboard" data-tab="dashboard">
+        <i class="bx bx-bar-chart-alt-2"></i>
+        <span>Movie Analytics</span>
+        <i class="bx bx-chevron-right nav-arrow"></i>
+      </button>
+    </nav>
+
+
+  </div>
+
+  <!-- ░░░░░░░░░ APP HEADER ░░░░░░░░░ -->
+  <header class="app-header">
+    <div class="header-left">
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Open navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="app-logo-inline">
+        <span class="logo-film"></span>
+        <span class="logo-wordmark"></span>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <h2 id="page-title">Movie Review Summarizer</h2>
+      <p id="page-subtitle">Ingest reviews · detect profanity · synthesize opinions</p>
+    </div>
+
+    <div class="header-right">
+      <div class="engine-status-badge">
+        <span class="pulse-dot"></span>
+        <span class="status-text">CRITIC ENGINE ONLINE</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ░░░░░░░░░ MAIN CONTENT ░░░░░░░░░ -->
+  <main class="main-content">
+    <div class="content-body">
+
+      <!-- View 1: Pipeline Execution -->
+      <section id="view-pipeline" class="tab-view active">
+        <div class="pipeline-grid">
+          <div class="input-panel glass-card">
+            <div class="card-header">
+              <h3><i class="bx bx-film text-gradient"></i> Cinema Reel Reviews</h3>
+              <div class="presets-dropdown-wrapper">
+                <div class="searchable-dropdown" id="dataset-dropdown">
+                  <div class="dropdown-trigger">
+                    <span class="selected-value">Load Dataset...</span>
+                    <i class="bx bx-chevron-down"></i>
+                  </div>
+                  <div class="dropdown-panel hidden">
+                    <div class="dropdown-search-wrapper">
+                      <i class="bx bx-search search-icon"></i>
+                      <input type="text" class="dropdown-search-input" placeholder="Search datasets..."
+                        autocomplete="off">
+                    </div>
+                    <div class="dropdown-options-list">
+                      <!-- Populated dynamically via JS -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="input-container">
+              <label for="reviews-input" class="input-label">Enter reviews here :</label>
+              <textarea id="reviews-input" placeholder="// Load above, or type custom reviews here...&#10;"></textarea>
+              <div class="input-actions">
+                <button id="clear-input-btn" class="btn btn-secondary">
+                  <i class="bx bx-trash"></i> Clear
+                </button>
+                <button id="run-pipeline-btn" class="btn btn-primary btn-glow">
+                  <i class="bx bx-slideshow"></i> Run Review Analyser
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- View 2: Decision Support Dashboard -->
+      <section id="view-dashboard" class="tab-view">
+
+        <!-- ── HERO VERDICT BANNER (shown after analysis) ── -->
+        <div class="verdict-hero hidden" id="verdict-hero">
+          <div class="verdict-hero-left">
+            <div class="verdict-hero-label">🎬 OVERALL VERDICT</div>
+            <div class="verdict-hero-value" id="verdict-hero-val">–</div>
+            <div class="verdict-hero-sub" id="verdict-hero-sub">Run the pipeline to see your movie's consensus</div>
+          </div>
+          <div class="verdict-hero-stats">
+            <div class="vh-stat">
+              <span class="vh-stat-num" id="vh-rating">–</span>
+              <span class="vh-stat-lbl">⭐ Avg Rating</span>
+            </div>
+            <div class="vh-divider"></div>
+            <div class="vh-stat">
+              <span class="vh-stat-num" id="vh-sentiment">–</span>
+              <span class="vh-stat-lbl">💚 Positive</span>
+            </div>
+            <div class="vh-divider"></div>
+            <div class="vh-stat">
+              <span class="vh-stat-num" id="vh-reviews">–</span>
+              <span class="vh-stat-lbl">📋 Reviews</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Top Row: Key Metrics -->
+        <div class="stats-row">
+          <div class="stat-card glass-card" id="stat-card-rating">
+            <div class="stat-icon bg-blue-glow"><i class="bx bx-star"></i></div>
+            <div class="stat-details">
+              <span class="stat-label">Average Star Rating</span>
+              <h3 id="stat-avg-rating">–</h3>
+              <div class="rating-stars" id="stat-stars-render"></div>
+              <div class="stat-interpretation" id="stat-rating-interp"></div>
+            </div>
+          </div>
+          <div class="stat-card glass-card" id="stat-card-sentiment">
+            <div class="stat-icon bg-green-glow"><i class="bx bx-wink-smile"></i></div>
+            <div class="stat-details">
+              <span class="stat-label">Net Positive Sentiment</span>
+              <h3 id="stat-sentiment-score">–</h3>
+              <div class="stat-progress">
+                <div class="progress-bar" id="stat-sentiment-progress" style="width: 0%"></div>
+              </div>
+              <div class="stat-interpretation" id="stat-sentiment-interp"></div>
+            </div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-icon bg-purple-glow"><i class="bx bx-analyse"></i></div>
+            <div class="stat-details">
+              <span class="stat-label">Reviews Processed</span>
+              <h3 id="stat-total-reviews">–</h3>
+              <span class="stat-subtext" id="stat-languages-count">No languages active</span>
+            </div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-icon bg-red-glow"><i class="bx bx-shield-x"></i></div>
+            <div class="stat-details">
+              <span class="stat-label">Profanities Suppressed</span>
+              <h3 id="stat-profanities-count">–</h3>
+              <span class="stat-subtext text-danger" id="stat-profanities-ratio">– of reviews censored</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Second Row: Summary and Visual Analytics -->
+        <div class="dashboard-grid">
+          <!-- Left Column: Synthesized Summary -->
+          <div class="summary-card-container glass-card">
+            <div class="card-header">
+              <h3><i class="bx bx-file-blank text-gradient"></i> Synthesized Decision Summary</h3>
+              <div class="header-badges">
+                <span class="badge badge-success">Spoiler-Free</span>
+                <span class="badge badge-info" id="summary-lang-badge">English</span>
+              </div>
+            </div>
+            <div class="summary-content">
+              <div class="empty-dashboard-state" id="dashboard-empty-state">
+                <i class="bx bx-line-chart-down"></i>
+                <p>No summarization data available. Run the System 3 pipeline in the "Critic Ingestion" tab first.</p>
+              </div>
+              <div class="actual-summary-data hidden" id="summary-data-wrapper">
+                <div class="verdict-banner" id="summary-verdict-banner">
+                  <div class="verdict-banner-left">
+                    <span class="verdict-title">Overall Recommendation</span>
+                    <span class="verdict-val" id="summary-verdict-val">Awaiting analysis...</span>
+                  </div>
+                  <div class="verdict-banner-right" id="verdict-rating-visual">
+                    <div class="verdict-stars" id="verdict-stars-big"></div>
+                  </div>
+                </div>
+                <!-- Key Takeaway Callouts -->
+                <div class="key-takeaways" id="key-takeaways">
+                  <!-- Populated by JS -->
+                </div>
+                <div class="aspect-sections-container" id="aspect-sections-container">
+                  <!-- Loaded dynamically via js -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Graphs & Extracted Metrics -->
+          <div class="analytics-card-container">
+
+            <!-- Graph 1: Sentiment Tiering -->
+            <div class="glass-card chart-card">
+              <div class="card-header">
+                <h3><i class="bx bx-pie-chart-alt-2 text-gradient"></i> Opinion Breakdown</h3>
+                <span class="chart-guide-label">How critics feel about this movie</span>
+              </div>
+              <div class="chart-container-split">
+                <div class="chart-canvas-wrapper">
+                  <svg viewBox="0 0 100 100" class="svg-doughnut" id="sentiment-doughnut">
+                    <circle cx="50" cy="50" r="40" class="chart-track"></circle>
+                    <circle cx="50" cy="50" r="40" class="chart-segment segment-good" id="doughnut-segment-good">
+                    </circle>
+                    <circle cx="50" cy="50" r="40" class="chart-segment segment-neutral" id="doughnut-segment-neutral">
+                    </circle>
+                    <circle cx="50" cy="50" r="40" class="chart-segment segment-bad" id="doughnut-segment-bad"></circle>
+                    <g class="chart-center-text">
+                      <text x="50" y="44" class="chart-label-val" id="chart-net-sentiment">0%</text>
+                      <text x="50" y="57" class="chart-label-lbl">Positive</text>
+                    </g>
+                  </svg>
+                </div>
+                <div class="chart-legend-enhanced" id="sentiment-legend">
+                  <div class="legend-item-enhanced">
+                    <div class="lei-left">
+                      <span class="legend-bullet bg-good"></span>
+                      <div>
+                        <span class="lei-name">Positive Reviews</span>
+                        <span class="lei-hint">Liked the movie</span>
+                      </div>
+                    </div>
+                    <span class="lei-val text-good" id="legend-good-val">0%</span>
+                  </div>
+                  <div class="legend-item-enhanced">
+                    <div class="lei-left">
+                      <span class="legend-bullet bg-neutral"></span>
+                      <div>
+                        <span class="lei-name">Mixed Reviews</span>
+                        <span class="lei-hint">Had reservations</span>
+                      </div>
+                    </div>
+                    <span class="lei-val text-neutral" id="legend-neutral-val">0%</span>
+                  </div>
+                  <div class="legend-item-enhanced">
+                    <div class="lei-left">
+                      <span class="legend-bullet bg-bad"></span>
+                      <div>
+                        <span class="lei-name">Negative Reviews</span>
+                        <span class="lei-hint">Disliked the movie</span>
+                      </div>
+                    </div>
+                    <span class="lei-val text-bad" id="legend-bad-val">0%</span>
+                  </div>
+                  <div class="sentiment-verdict-chip" id="sentiment-verdict-chip">–</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Graph 2: Aspect Sentiment Breakdown -->
+            <div class="glass-card chart-card">
+              <div class="card-header">
+                <h3><i class="bx bx-bar-chart-alt-2 text-gradient"></i> What Critics Focused On</h3>
+                <span class="chart-guide-label">% of positive mentions per category</span>
+              </div>
+              <div class="aspect-scale-guide">
+                <span>Negative</span>
+                <div class="scale-markers"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span>
+                </div>
+                <span>Positive</span>
+              </div>
+              <div class="aspect-bars-list" id="aspect-bars-list">
+                <div class="aspect-bar-item">
+                  <div class="aspect-bar-info">
+                    <div class="aspect-info-left">
+                      <i class="bx bx-shield-quarter aspect-icon"></i>
+                      <span class="aspect-name">Story Quality</span>
+                    </div>
+                    <div class="aspect-score-wrap">
+                      <span class="aspect-score" id="bar-score-quality">–</span>
+                      <span class="aspect-tag" id="bar-tag-quality"></span>
+                    </div>
+                  </div>
+                  <div class="aspect-bar-track">
+                    <div class="aspect-bar-fill fill-quality" id="bar-fill-quality" style="width: 0%"></div>
+                    <div class="aspect-midline"></div>
+                  </div>
+                </div>
+                <div class="aspect-bar-item">
+                  <div class="aspect-bar-info">
+                    <div class="aspect-info-left">
+                      <i class="bx bx-bolt-circle aspect-icon"></i>
+                      <span class="aspect-name">Performance</span>
+                    </div>
+                    <div class="aspect-score-wrap">
+                      <span class="aspect-score" id="bar-score-performance">–</span>
+                      <span class="aspect-tag" id="bar-tag-performance"></span>
+                    </div>
+                  </div>
+                  <div class="aspect-bar-track">
+                    <div class="aspect-bar-fill fill-performance" id="bar-fill-performance" style="width: 0%"></div>
+                    <div class="aspect-midline"></div>
+                  </div>
+                </div>
+                <div class="aspect-bar-item">
+                  <div class="aspect-bar-info">
+                    <div class="aspect-info-left">
+                      <i class="bx bx-dollar-circle aspect-icon"></i>
+                      <span class="aspect-name">Value for Money</span>
+                    </div>
+                    <div class="aspect-score-wrap">
+                      <span class="aspect-score" id="bar-score-price">–</span>
+                      <span class="aspect-tag" id="bar-tag-price"></span>
+                    </div>
+                  </div>
+                  <div class="aspect-bar-track">
+                    <div class="aspect-bar-fill fill-price" id="bar-fill-price" style="width: 0%"></div>
+                    <div class="aspect-midline"></div>
+                  </div>
+                </div>
+                <div class="aspect-bar-item">
+                  <div class="aspect-bar-info">
+                    <div class="aspect-info-left">
+                      <i class="bx bx-package aspect-icon"></i>
+                      <span class="aspect-name">Direction &amp; Style</span>
+                    </div>
+                    <div class="aspect-score-wrap">
+                      <span class="aspect-score" id="bar-score-support">–</span>
+                      <span class="aspect-tag" id="bar-tag-support"></span>
+                    </div>
+                  </div>
+                  <div class="aspect-bar-track">
+                    <div class="aspect-bar-fill fill-support" id="bar-fill-support" style="width: 0%"></div>
+                    <div class="aspect-midline"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Insights Box -->
+            <div class="glass-card insights-card">
+              <div class="card-header">
+                <h3><i class="bx bx-bulb text-gradient"></i> Extracted Signals</h3>
+                <span class="chart-guide-label">Raw facts &amp; emotional cues from critics</span>
+              </div>
+              <div class="insights-grid">
+                <div class="insight-sub-panel">
+                  <h5><i class="bx bx-hash"></i> Numeric Facts</h5>
+                  <p class="insight-hint">Exact numbers mentioned by critics</p>
+                  <ul class="insight-list" id="preserved-numbers-list">
+                    <li class="empty-list-placeholder">Run pipeline to extract numbers.</li>
+                  </ul>
+                </div>
+                <div class="insight-sub-panel">
+                  <h5><i class="bx bx-smile"></i> Emotional Cues</h5>
+                  <p class="insight-hint">Emoji reactions from critics</p>
+                  <div class="emoji-signals-container" id="emoji-signals-container">
+                    <span class="empty-list-placeholder">No emojis detected.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ░░░░░░░░░ CINEMA LOADER OVERLAY ░░░░░░░░░ -->
+  <div class="cinema-loader hidden" id="cinema-loader">
+    <div class="loader-backdrop"></div>
+    <div class="loader-container">
+      <div class="projector-wrapper">
+        <div class="vintage-projector">
+          <div class="projector-spool spool-back">
+            <div class="spool-spokes"></div>
+            <div class="spool-spokes spoke-2"></div>
+            <div class="spool-spokes spoke-3"></div>
+            <div class="film-loop"></div>
+          </div>
+          <div class="projector-spool spool-front">
+            <div class="spool-spokes"></div>
+            <div class="spool-spokes spoke-2"></div>
+            <div class="spool-spokes spoke-3"></div>
+            <div class="film-loop"></div>
+          </div>
+          <div class="projector-body-case">
+            <div class="lens-barrel">
+              <div class="lens-glow"></div>
+            </div>
+          </div>
+          <div class="projector-stand-legs"></div>
+        </div>
+        <div class="projection-light-beam"></div>
+      </div>
+      <div class="loader-meta">
+        <h3 class="loader-title"><i class="bx bx-slideshow"></i> Developing Critic Report...</h3>
+        <p class="loader-status" id="loader-status-text">Loading celluloid reels...</p>
+        <div class="loader-progress-track">
+          <div class="loader-progress-bar" id="loader-progress" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
